@@ -39,7 +39,7 @@ function tick() {
     let width = grid[0].length;
     let height = grid.length;
     let nextGen = Array(height).fill().map(() => Array(width).fill(0));
-    
+
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
             const cellState = grid[y][x];
@@ -76,11 +76,23 @@ function tickConductor(cellX, cellY, nextGen) {
     }
 }
 
-canvas.addEventListener("click", (event) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = Math.floor((event.clientX-rect.left) / cellSize);
-    const y = Math.floor((event.clientY-rect.top) / cellSize);
+let currentBrush = 3;
 
-    grid[y][x] = (grid[y][x]+1) % 4;
-    drawGrid();
+function changeBrush(newBrush) {
+    currentBrush = newBrush;
+}
+
+let mouseDown = false;
+
+canvas.addEventListener("mousedown", (event) => {mouseDown = true;});
+canvas.addEventListener("mouseup", (event) => {mouseDown = false;});
+canvas.addEventListener("mousemove", (event) => {
+    if (event.button == 0 && mouseDown) {
+        const rect = canvas.getBoundingClientRect();
+        const x = Math.floor((event.clientX - rect.left) / cellSize);
+        const y = Math.floor((event.clientY - rect.top) / cellSize);
+
+        grid[y][x] = currentBrush;
+        drawGrid();
+    }
 });
