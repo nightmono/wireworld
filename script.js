@@ -62,6 +62,19 @@ function tick() {
     drawGrid();
 }
 
+let ticking = false
+let tickingIntervalID = null;
+
+function toggleTicking() {
+    if (ticking) {
+        clearInterval(tickingIntervalID);
+        ticking = false;
+    } else {
+        tickingIntervalID = setInterval(tick, 100);
+        ticking = true;
+    }
+}
+
 function tickConductor(cellX, cellY, nextGen) {
     let electronNeighbours = 0;
     for (let i = 0; i < directions.length; i++) {
