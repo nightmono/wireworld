@@ -35,6 +35,11 @@ function drawGrid() {
     }
 }
 
+function clearGrid() {
+    grid = Array(gridSize).fill().map(() => Array(gridSize).fill(0));
+    drawGrid();
+}
+
 function tick() {
     let width = grid[0].length;
     let height = grid.length;
