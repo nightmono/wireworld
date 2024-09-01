@@ -5,9 +5,9 @@ const directions = [
 ];
 const stateColors = {
     0: "black",
-    1: "blue",
-    2: "red",
-    3: "yellow"
+    1: "#2A7BDE",
+    2: "#F66151",
+    3: "#E9AD0C"
 };
 
 const canvas = document.getElementById("canvas");
@@ -25,7 +25,7 @@ drawGrid();
 
 function drawGrid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = "grey";
+    ctx.strokeStyle = "#171421";
     for (let y = 0; y < gridSize; y++) {
         for (let x = 0; x < gridSize; x++) {
             ctx.fillStyle = stateColors[grid[y][x]];
