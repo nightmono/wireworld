@@ -100,18 +100,22 @@ function changeBrush(newBrush) {
     currentBrush = newBrush;
 }
 
-function drawCell(event) {
+function mouseToPos(event) {
     const rect = canvas.getBoundingClientRect();
     const x = Math.floor((event.clientX - rect.left) / cellSize);
     const y = Math.floor((event.clientY - rect.top) / cellSize);
+    return [x, y];
+}
 
+function drawCell(event) {
+    const [x, y] = mouseToPos(event);
     grid[y][x] = currentBrush;
     drawGrid();
 }
 
 let mouseDown = false;
 
-canvas.addEventListener("mousedown", (event) => { 
+canvas.addEventListener("mousedown", (event) => {
     mouseDown = true;
     drawCell(event);
 });
@@ -119,5 +123,11 @@ canvas.addEventListener("mouseup", (event) => { mouseDown = false; });
 canvas.addEventListener("mousemove", (event) => {
     if (event.button == 0 && mouseDown) {
         drawCell(event);
+    } else {
+        drawGrid();
+        const [x, y] = mouseToPos(event); 
+        ctx.fillStyle = stateColors[currentBrush];
+        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
     }
 });
