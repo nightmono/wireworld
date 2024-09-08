@@ -66,12 +66,15 @@ let ticking = false
 let tickingIntervalID = null;
 
 function toggleTicking() {
+    const toggleButton = document.getElementById("toggleButton");
     if (ticking) {
         clearInterval(tickingIntervalID);
         ticking = false;
+        toggleButton.textContent = "Enable ticking";
     } else {
         tickingIntervalID = setInterval(tick, 100);
         ticking = true;
+        toggleButton.textContent = "Stop ticking";
     }
 }
 
@@ -124,6 +127,8 @@ canvas.addEventListener("mousemove", (event) => {
     if (event.button == 0 && mouseDown) {
         drawCell(event);
     } else {
+        // Draw placement preview
+        // TODO: Broken when ticking is toggled
         drawGrid();
         const [x, y] = mouseToPos(event); 
         ctx.fillStyle = stateColors[currentBrush];
