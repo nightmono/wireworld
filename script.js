@@ -13,8 +13,8 @@ const stateColors = {
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const cellSize = 20;
-const gridWidth = Math.floor(window.screen.availWidth / cellSize);
-const gridHeight = Math.floor(window.screen.availHeight / cellSize);
+const gridWidth = Math.ceil(window.screen.availWidth / cellSize);
+const gridHeight = Math.ceil(window.screen.availHeight / cellSize);
 
 canvas.height = cellSize * gridHeight;
 canvas.width = cellSize * gridWidth;
