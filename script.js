@@ -13,15 +13,15 @@ const stateColors = {
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const cellSize = 20;
-const gridWidth = 40;
-const gridHeight = 40;
+const gridWidth = Math.floor(window.screen.availWidth / cellSize);
+const gridHeight = Math.floor(window.screen.availHeight / cellSize);
 
 canvas.height = cellSize * gridHeight;
 canvas.width = cellSize * gridWidth;
 
 // To avoid shallow copies, make an array of undefined and map each undefined
 // to its own row
-let grid = Array(gridWidth).fill().map(() => Array(gridHeight).fill(0));
+let grid = Array(gridHeight).fill().map(() => Array(gridWidth).fill(0));
 drawGrid();
 
 function drawGrid() {
@@ -37,7 +37,7 @@ function drawGrid() {
 }
 
 function clearGrid() {
-    grid = Array(gridWidth).fill().map(() => Array(gridHeight).fill(0));
+    grid = Array(gridHeight).fill().map(() => Array(gridWidth).fill(0));
     drawGrid();
 }
 
