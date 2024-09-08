@@ -42,7 +42,7 @@ function clearGrid() {
 }
 
 function tick() {
-    let nextGen = Array(gridWidth).fill().map(() => Array(gridHeight).fill(0));
+    let nextGen = Array(gridHeight).fill().map(() => Array(gridWidth).fill(0));
 
     for (let y = 0; y < gridHeight; y++) {
         for (let x = 0; x < gridWidth; x++) {
