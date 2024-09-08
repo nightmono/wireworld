@@ -13,21 +13,22 @@ const stateColors = {
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const cellSize = 20;
-const gridSize = 40;
+const gridWidth = 40;
+const gridHeight = 40;
 
-canvas.height = cellSize * gridSize;
-canvas.width = cellSize * gridSize;
+canvas.height = cellSize * gridHeight;
+canvas.width = cellSize * gridWidth;
 
 // To avoid shallow copies, make an array of undefined and map each undefined
 // to its own row
-let grid = Array(gridSize).fill().map(() => Array(gridSize).fill(0));
+let grid = Array(gridWidth).fill().map(() => Array(gridHeight).fill(0));
 drawGrid();
 
 function drawGrid() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.strokeStyle = "#171421";
-    for (let y = 0; y < gridSize; y++) {
-        for (let x = 0; x < gridSize; x++) {
+    for (let y = 0; y < gridHeight; y++) {
+        for (let x = 0; x < gridWidth; x++) {
             ctx.fillStyle = stateColors[grid[y][x]];
             ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
             ctx.strokeRect(x * cellSize, y * cellSize, cellSize, cellSize);
@@ -36,17 +37,15 @@ function drawGrid() {
 }
 
 function clearGrid() {
-    grid = Array(gridSize).fill().map(() => Array(gridSize).fill(0));
+    grid = Array(gridWidth).fill().map(() => Array(gridHeight).fill(0));
     drawGrid();
 }
 
 function tick() {
-    let width = grid[0].length;
-    let height = grid.length;
-    let nextGen = Array(height).fill().map(() => Array(width).fill(0));
+    let nextGen = Array(gridWidth).fill().map(() => Array(gridHeight).fill(0));
 
-    for (let y = 0; y < height; y++) {
-        for (let x = 0; x < width; x++) {
+    for (let y = 0; y < gridHeight; y++) {
+        for (let x = 0; x < gridWidth; x++) {
             const cellState = grid[y][x];
             if (cellState == 1) {
                 nextGen[y][x] = 2;
@@ -83,7 +82,7 @@ function tickConductor(cellX, cellY, nextGen) {
     for (let i = 0; i < directions.length; i++) {
         x = cellX + directions[i][0];
         y = cellY + directions[i][1];
-        if (x < 0 || x >= gridSize || y < 0 || y >= gridSize) {
+        if (x < 0 || x >= gridWidth || y < 0 || y >= gridHeight) {
             continue;
         } else if (grid[y][x] == 1) {
             electronNeighbours++;
