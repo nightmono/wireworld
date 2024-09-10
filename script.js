@@ -65,15 +65,15 @@ let ticking = false
 let tickingIntervalID = null;
 
 function toggleTicking() {
-    const toggleButton = document.getElementById("toggleButton");
+    const togglePath = document.getElementById("togglePath");
     if (ticking) {
         clearInterval(tickingIntervalID);
         ticking = false;
-        toggleButton.textContent = "Enable ticking";
+        togglePath.setAttribute("d", "m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z");
     } else {
         tickingIntervalID = setInterval(tick, 100);
         ticking = true;
-        toggleButton.textContent = "Stop ticking";
+        togglePath.setAttribute("d", "M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z");
     }
 }
 
@@ -97,9 +97,14 @@ function tickConductor(cellX, cellY, nextGen) {
 }
 
 let currentBrush = 3;
+changeBrush(3);
 
 function changeBrush(newBrush) {
+    for (let i = 0; i < 4; i++) {
+        document.getElementById(`selector${i}`).style.borderRadius = "0px";
+    }
     currentBrush = newBrush;
+    document.getElementById(`selector${newBrush}`).style.borderRadius = "8px";
 }
 
 function mouseToPos(event) {
