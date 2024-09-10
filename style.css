@@ -2,4 +2,22 @@
     padding: 0;
     margin: 0;
     overflow: clip;
+    background-color: black;
+}
+
+div {
+  display: inline-block;
+}
+
+.control {
+    padding-top: 4px;
+    padding-left: 4px;
+}
+
+.brushColorSelector {
+    height: 24px;
+    width: 24px;
+    background-color: #F66151;
+    border-radius: 0px;
+    transition: border-radius 0.5s;
 }

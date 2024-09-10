@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wireworld</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-
 </head>
 
 <body>
-    <button onclick="tick()">Tick</button>
-    <button id="toggleButton" onclick="toggleTicking()">Enable ticking</button>
-    <button onclick="clearGrid()">Clear</button>
-    <button onclick="changeBrush(0)">Empty</button>
-    <button onclick="changeBrush(1)">Head</button>
-    <button onclick="changeBrush(2)">Tail</button>
-    <button onclick="changeBrush(3)">Wire</button>
+    <div class="control" onclick="tick()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z" />
+        </svg>
+    </div>
+    <div class="control" onclick="toggleTicking()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path id="togglePath" d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z" />
+        </svg>
+    </div>
+    <div class="control" onclick="clearGrid()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
+            <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+        </svg>
+    </div>
+    <div class="control" onclick="changeBrush(0)">
+        <div id="selector0" class="brushColorSelector" style="background-color: #242030;"></div>
+    </div>
+    <div class="control" onclick="changeBrush(1)">
+        <div id="selector1" class="brushColorSelector" style="background-color: #2A7BDE;"></div>
+    </div>
+    <div class="control" onclick="changeBrush(2)">
+        <div id="selector2" class="brushColorSelector" style="background-color: #F66151;"></div>
+    </div>
+    <div class="control" onclick="changeBrush(3)">
+        <div id="selector3" class="brushColorSelector" style="background-color: #E9AD0C;"></div>
+    </div>
 
     <br>
 
